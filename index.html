@@ -77,6 +77,8 @@
 			function clickFn() {
 				//清空
 				$("textarea").val("");
+				timeArr = [];
+				timeIdx = 0;
 				
 				for (var i=0;i < $("li").length; i++) {
 					var startime = $(".statr").eq(i).val();
@@ -96,9 +98,11 @@
 				   	p:'1',//默认播放
 				};
 				var video=[videourl+'->video/mp4'];
-				CKobject.embed('../../lib/ckplayer/ckplayer.swf','box','ckplayer_a1','100%','100%',false,flashvars,video);
+				CKobject.embed('ckplayer/ckplayer.swf','box','ckplayer_a1','100%','100%',true,flashvars,video);
 				//跳转到播放时间
-				CKobject.getObjectById('ckplayer_a1').videoSeek(timeArr[timeIdx][0]);
+				if (timeArr.length > 0) {
+					CKobject.getObjectById('ckplayer_a1').videoSeek(timeArr[timeIdx][0]);
+				}				
 			}
 			
 			//监听事件	
@@ -106,8 +110,8 @@
 				//打印状态
 				$("textarea").val(str+'\n'+$("textarea").val());
 				
-				if (str.split("time:")[1] != undefined) {
-					var videotime = str.split("time:")[1];
+				if (str.split("time:")[1] != undefined && str.split("time:")[0] == "") {
+					var videotime = Number(str.split("time:")[1]);
 					if (videotime >= timeArr[timeIdx][1]) {
 						timeIdx ++;
 						if (timeIdx >= timeArr.length) {
