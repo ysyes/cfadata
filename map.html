@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			p{
+				margin-left: 50px;
+				margin-top: 20px;
+			}
+			p input{
+				margin-right: 40px;
+			}
+			p span{
+				display: inline-block;
+				margin-bottom: -10px;
+				width: 30px;
+				height: 30px;
+				background: url(lib/skin/default/icon.png) no-repeat -180px 0;
+				cursor: pointer;
+			}
+			p span.rotate{
+				background: url(lib/skin/default/icon.png) no-repeat -150px 0;
+			}
+			#box{
+				margin: 100px;
+				width: 310px;
+				height: 200px;
+				background: url(img/qiuchang.png) no-repeat;
+				background-size: 100% 100%;
+				transition: all 0.2s;
+				-moz-transition: all 0.2s;
+				-webkit-transition: all 0.2s;
+				-o-transition: all 0.2s;
+			}
+			#box.rotate{
+				transform: rotateZ(-90deg);
+				-ms-transform:rotateZ(-90deg);
+				-moz-transform:rotateZ(-90deg);
+				-webkit-transform:rotateZ(-90deg);
+				-o-transform:rotateZ(-90deg);
+			}
+			#box.rotate ul li{
+				transform: rotateZ(90deg);
+				-ms-transform:rotateZ(90deg);
+				-moz-transform:rotateZ(90deg);
+				-webkit-transform:rotateZ(90deg);
+				-o-transform:rotateZ(90deg);
+			}
+			#box ul{
+				width: 300px;
+				height: 200px;
+				margin: 0 auto;
+			}
+			#box ul li{
+				width: 50px;
+				height: 50px;
+				float: left;
+				list-style: none;
+				font-size: 0;				
+			}
+			#box ul li input{
+				display: block;
+				width: 50px;
+				height: 20px;
+				margin-top: 15px;
+				border: none;
+				outline: none;
+				text-align: center;
+				background: none;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			选个色：<input type="color" name="color" id="color" value="#22AF36" />
+			文字色：<input type="color" name="textcolor" id="textcolor" value="#001122" /> 
+			旋转跳跃：<span></span>
+		</p>		
+		<div id="box">
+			<ul>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+				<li>
+					<input type="text" name="" id="" value="0%"/>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="lib/jquery-2.2.3.min.js" ></script>
+		<script>
+			//旋转跳跃
+			$("p span").click(function () {
+				if ($(this).attr("class") == "rotate") {
+					$(this).removeClass("rotate");
+					$("#box").removeClass("rotate");
+				} else{
+					$(this).addClass("rotate");
+					$("#box").addClass("rotate");
+				}
+			})
+			$("#textcolor").change(function () {
+				$("#box input").css("color",$(this).val());
+			})
+			$("#color").change(function () {
+				changeFn();
+			})
+			$("#box input").change(function () {
+				changeFn();
+			})				
+			function changeFn() {
+				if ($("#color").val().length == 7) {
+					var color1 = $("#color").val().substring(1,3);
+					var color2 = $("#color").val().substring(3,5);
+					var color3 = $("#color").val().substring(5,7);
+					var rgb = parseInt(color1,16) + "," + parseInt(color2,16) + ","+parseInt(color3,16);
+				} else{
+					alert("颜色有问题")
+				}
+				//找最大值
+				var max = 0;
+				$("#box input").each(function () {
+					if (parseFloat($(this).val()) > max) {
+						max = parseFloat($(this).val());
+					}
+				})
+				max = 1.2*max;
+				$("#box li").each(function () {
+					$(this).css("background","rgba("+rgb+","+parseFloat($(this).children().val())/max+")");
+				})
+			}
+		</script>
+	</body>
+</html>
