@@ -32,29 +32,32 @@
 	<body>
 		<div class="main">
 			播放地址：<input type="text" name="" id="" value="rtmp://liveone.cfadata.cn/one/live2?auth_key=1518599442-8076500-0-bd57075d8ecfa38e54edc42d6db3926e" />
-			<button>提交</button>
+			<button onclick="playerFn()">提交</button>
 		</div>
 		<div id="box">
 			
 		</div>
 		<script type="text/javascript" src="chplayer/chplayer.min.js" ></script>
 		<script type="text/javascript">
-			var videoObject = {
-				container: '#box', //容器的ID或className
-				variable: 'player',
-				volume: 0.6, //默认音量
-				poster: 'screenshot/wdm.jpg', //封面图片地址
-				autoplay: true, //是否自动播放
-				loop: false, //是否循环播放
-				live: false, //是否是直播
-				loaded: 'loadedHandler', //当播放器加载后执行的函数
-				seek: 0, //默认需要跳转的时间
-				drag: '', //在flashplayer情况下是否需要支持拖动，拖动的属性是什么
-				front: 'frontFun', //前一集按钮动作
-				next: 'nextFun', //下一集按钮动作
-				video: 'rtmp://liveone.cfadata.cn/one/live2?auth_key=1518599442-8076500-0-bd57075d8ecfa38e54edc42d6db3926e'
+			function playerFn() {
+				var videoObject = {
+					container: '#box', //容器的ID或className
+					variable: 'player',
+					volume: 0.6, //默认音量
+					poster: 'screenshot/wdm.jpg', //封面图片地址
+					autoplay: true, //是否自动播放
+					loop: false, //是否循环播放
+					live: false, //是否是直播
+					loaded: 'loadedHandler', //当播放器加载后执行的函数
+					seek: 0, //默认需要跳转的时间
+					drag: '', //在flashplayer情况下是否需要支持拖动，拖动的属性是什么
+					front: 'frontFun', //前一集按钮动作
+					next: 'nextFun', //下一集按钮动作
+					video: 'rtmp://liveone.cfadata.cn/one/live2?auth_key=1518599442-8076500-0-bd57075d8ecfa38e54edc42d6db3926e'
+				}
+				var player = new chplayer(videoObject);
 			}
-			var player = new chplayer(videoObject);
+				
 			function loadedHandler() {
 //				alert("准备开始");
 				player.addListener('ended', endedHandler); //监听全屏/非全屏切换
