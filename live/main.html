@@ -457,7 +457,6 @@
 		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 		<!--<script type="text/javascript" src="js/main.js" ></script>-->
 		<script>
-			console.log(window.sessionStorage.getItem("mainteamid"));
 			//点击球队传球主客队
 			$("#teamMain .teammap div ul li").click(function () {
 				$(this).addClass("checked").siblings().removeClass("checked");
@@ -559,6 +558,24 @@
 						}
 					})
 				}		
+			}
+			swiperFn();
+			function swiperFn() {
+				var swiper = new Swiper('.swiper-container', {
+				    scrollbar: '.swiper-scrollbar',
+				    direction: 'vertical',
+				    slidesPerView: 'auto',
+				    mousewheelControl: true,
+				    freeMode: true,
+					roundLengths : true, //防止文字模糊
+					initialSlide :0,
+					observer:true,
+					observeParents:true
+				});
+				$("header p").click(function () {
+					swiper.slideTo(0);
+					swiper.update();
+				})
 			}
 		</script>
 	</body>
