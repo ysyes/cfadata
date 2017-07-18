@@ -1,6 +1,6 @@
 //点击新增
 $("#title p").click(function () {
-	$("#title ul").append('<li><input class="name" type="text" value="" placeholder="name"/>:<input class="num" type="number" value="0" /><i title="删除">×</i></li>')
+	$("#title ul").append('<li><input class="name" type="text" value="" placeholder="name"/>:<input class="num" type="number" value="" /><i title="删除">×</i></li>')
 });
 //删除
 $("#title ul").on("click","li i",function () {
