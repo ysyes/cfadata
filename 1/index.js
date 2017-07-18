@@ -27,7 +27,7 @@ $("#title div").click(function () {
 		$("#box").show();
 		boxFn(data,datas);
 	}else{
-		layer.msg("都没提什么")
+		layer.msg("你想提什么东西？")
 	}
 })
 //数据项
