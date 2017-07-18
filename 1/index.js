@@ -53,9 +53,12 @@ function boxFn(data,datas){
             left: '80%',
             top:'middle',
             right:'10%',
-            itemWidth:8,
-            itemGap:8,
-            data: datas
+            itemWidth:15,
+            itemGap:10,
+            data: datas,
+            textStyle:{
+            	fontSize:18
+            }
         },
         series : [
             {
@@ -66,6 +69,9 @@ function boxFn(data,datas){
                 data:data,
                 label:{
                     normal:{
+                    	textStyle:{
+			            	fontSize:18
+			            },
                         formatter:'{b}: {c}'
                     }
                 },
