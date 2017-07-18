@@ -1,10 +1,3 @@
-//点击生成数据
-$("#box div").click(function () {
-	//显示
-	$("#myteam").show();
-	
-	
-})
 //点击新增
 $("#title p").click(function () {
 	$("#title ul").append('<li><input class="name" type="text" value="" placeholder="name"/>:<input class="num" type="number" value="0" /><i title="删除">×</i></li>')
@@ -31,7 +24,10 @@ $("#title div").click(function () {
 		}
 	});
 	if (data.length > 0) {
+		$("#box").show();
 		boxFn(data,datas);
+	}else{
+		layer.msg("都没提什么")
 	}
 })
 //数据项
